@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Maze Tower Phaser HelloWorld',
+  title: 'Maze Tower Defense',
   description: 'Next.js + TypeScript + Phaser prototype',
 };
 
