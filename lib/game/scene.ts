@@ -1,4 +1,4 @@
-import * as Phaser from 'phaser';
+import Phaser from 'phaser';
 import { GridMap } from './grid';
 import { computeFlowField, nextStepByDistance } from './flowField';
 

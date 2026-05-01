@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import * as Phaser from 'phaser';
+import Phaser from 'phaser';
 import { HelloMazeScene } from '@/lib/game/scene';
 
 export default function HomePage() {
@@ -26,8 +26,8 @@ export default function HomePage() {
   return (
     <main>
       <div>
-        <h1>Maze Tower Defense</h1>
-        <p>Next.js + TypeScript + Phaser Prototype</p>
+        <h1>Maze Tower FlowField Prototype</h1>
+        <p>Next.js + TypeScript + Phaser HelloWorld</p>
         <div ref={containerRef} />
       </div>
     </main>
