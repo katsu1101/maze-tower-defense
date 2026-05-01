@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Phaser from 'phaser';
-import { HelloMazeScene } from '@/lib/game/scene';
+import { createHelloMazeScene } from '@/lib/game/scene';
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -10,24 +9,34 @@ export default function HomePage() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const game = new Phaser.Game({
-      type: Phaser.AUTO,
-      width: 720,
-      height: 432,
-      parent: containerRef.current,
-      scene: [HelloMazeScene],
-      physics: { default: 'arcade' },
-      backgroundColor: '#0e1526',
-    });
+    let game: import('phaser').Game | null = null;
 
-    return () => game.destroy(true);
+    const boot = async () => {
+      const Phaser = await import('phaser');
+      const HelloMazeScene = createHelloMazeScene(Phaser);
+      game = new Phaser.Game({
+        type: Phaser.AUTO,
+        width: 720,
+        height: 432,
+        parent: containerRef.current!,
+        scene: [HelloMazeScene],
+        physics: { default: 'arcade' },
+        backgroundColor: '#0e1526',
+      });
+    };
+
+    void boot();
+
+    return () => {
+      game?.destroy(true);
+    };
   }, []);
 
   return (
     <main>
       <div>
-        <h1>Maze Tower FlowField Prototype</h1>
-        <p>Next.js + TypeScript + Phaser HelloWorld</p>
+        <h1>Maze Tower Defense</h1>
+        <p>Next.js + TypeScript + Phaser Prototype</p>
         <div ref={containerRef} />
       </div>
     </main>
